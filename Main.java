@@ -24,7 +24,7 @@ public class Main {
         Job job = Job.getInstance(conf, "nbr like");
         job.setJarByClass(Main.class);
         job.setMapperClass(TokenizerMapper.class);
-        job.setReducerClass(nbrReducer.class);
+        job.setReducerClass(NbrReducer.class);
         job.setSortComparatorClass(Comparator.class);
         job.setOutputKeyClass(Text.class);
         job.setOutputValueClass(IntWritable.class);
