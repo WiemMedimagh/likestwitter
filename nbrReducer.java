@@ -6,16 +6,13 @@ import java.util.ArrayList;
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Reducer;
-public class nbrReducer extends Reducer<Text, IntWritable, Text, IntWritable> {
-	ArrayList<Integer> List = new ArrayList<Integer>();
-public void reduce(Text key,Iterable<IntWritable> values,Context context) throws IOException, InterruptedException{
-  double sum = 0;
-        for (DoubleWritable val : values) {
-            System.out.println("value: "+val.get());
-            sum += val.get();
-        }
-        System.out.println("--> Sum = "+sum);
-        result.set(sum);
-        context.write(key, result);
-    }
+public static class nbrReduce extends Reducer<Text, IntWritable, Text, IntWritable> {
+       public void reduce(Text key, Iterable<IntWritable> values,Context context) throws IOException,InterruptedException {
+              int sum = 0;
+              for (IntWritable val : values) {
+                   sum += val.get();
+              }
+       context.write(key, new IntWritable(sum));
+       }
 }
+
