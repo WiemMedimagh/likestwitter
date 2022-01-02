@@ -5,7 +5,7 @@ import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Mapper;
 
 import java.io.IOException;
-public static class Map extends Mapper<LongWritable, Text, Text, IntWritable> {
+public static class TokenizerMapper extends Mapper<LongWritable, Text, Text, IntWritable> {
        public void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
               String[] tokens = value.toString().split(",");
               String cle = tokens[0].substring(0,1);
